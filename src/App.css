@@ -1,0 +1,68 @@
+input::placeholder {
+  font-weight: 300;
+  color: rgba(108, 117, 125, 0.5); 
+}
+
+.img-hover-shadow:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+input:disabled {
+  background-color: #808080; 
+  opacity: 0.6; 
+}
+
+.btn-custom {
+  background-color: rgb(244, 45, 45);
+  font-size: 12px;
+  color: white;
+}
+
+.btn-custom:hover {
+  background-color:rgb(207, 38, 38);
+  font-size: 12px;
+  color: white;
+}
+
+.input-disabled {
+  background-color: white !important;
+  color: #333;
+  border-color: #ccc; 
+}
+
+.saldo-section {
+  height: 179px;
+}
+.saldo-text {
+  font-size: 18px;
+}
+.saldo-balance {
+  font-size: 28px;
+}
+.saldo-button {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+@media (max-width: 768px) {
+  .saldo-section {
+    height: 120px !important;
+  }
+  .saldo-balance {
+    font-size: 20px;
+    top: 42px !important;
+  }
+  .saldo-button {
+    font-size: 10px; 
+    top: 80px !important;
+    left: 15px !important;
+    padding: 3px 8px;
+  }
+  .saldo-section {
+    margin-top: 6% !important;
+  }
+  .img-profile {
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
