@@ -35,33 +35,49 @@ const Payment = () => {
 
   // Function to make payment
   const handlePayment = async () => {
-    dispatch(setLoading(true));
-    try {
-      const response = await DashboardApis.Transaction({
-        service_code: payment.service_code,
-      });
+    Swal.fire({
+      title: "Konfirmasi Pembayaran",
+      text: `Apakah Anda yakin ingin membayar sebesar Rp ${formatRupiah(
+        payment?.service_tariff
+      )}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya, Bayar",
+      cancelButtonText: "Batal",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        dispatch(setLoading(true));
+        try {
+          const response = await DashboardApis.Transaction({
+            service_code: payment.service_code,
+          });
 
-      Swal.fire({
-        icon: "success",
-        title: "Pembayaran Berhasil",
-        text: response?.message || "Pembayaran berhasil dilakukan",
-      }).then(() => {
-        dispatch(setActiveTab("dashboard"));
-      });
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Pembayaran Gagal",
-        text: error?.response?.data?.message || "Terjadi kesalahan, coba lagi.",
-      });
-    } finally {
-      dispatch(setLoading(false));
-    }
+          Swal.fire({
+            icon: "success",
+            title: "Pembayaran Berhasil",
+            text: response?.message || "Pembayaran berhasil dilakukan",
+          }).then(() => {
+            dispatch(setActiveTab("dashboard"));
+          });
+        } catch (error) {
+          Swal.fire({
+            icon: "error",
+            title: "Pembayaran Gagal",
+            text:
+              error?.response?.data?.message || "Terjadi kesalahan, coba lagi.",
+          });
+        } finally {
+          dispatch(setLoading(false));
+        }
+      }
+    });
   };
 
   return (
     <div className="mt-5">
-      <label>PemBayaran</label>
+      <label>Pembayaran</label>
       <div className="mt-2">
         <img
           src={payment?.service_icon}
